@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import "./App.css";
+import Layout from "./views/Layout";
+import Home from "./views/Home";
+import About from "./views/About";
+import Dashboard from "./views/Dashboard";
+import NoMatch from "./views/NoMatch";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Basic Example</h1>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route path="home" element={<Home />} />
+            <Route path="about" element={<About />} />
+            {/* това ще върне Id,след наклонената черта */}
+            <Route path="dashboard/:id" element={<Dashboard />} />
+            <Route path="*" element={<NoMatch />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
